@@ -2,6 +2,7 @@
 
 /**
  * main - prints a string using the puts() function
+ * Return: non-negative value. EOF otherwise.
 */
 int main(void)
 {
