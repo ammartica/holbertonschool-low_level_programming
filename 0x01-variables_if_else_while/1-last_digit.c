@@ -5,14 +5,14 @@
 /**
  * main - print last digit of number stored in n variable
  * Return: nothing
-*/
+ */
 int main(void)
 {
 	int n;
 
 	srand(time(0));
 	n = rand() - RAND_MAX / 2;
-	
+
 	for (int i = 0; i < n; i++)
 	{
 		if (i > 5)
@@ -21,5 +21,7 @@ int main(void)
 			printf("Last digit of %d is %d and is less than 6 and not 0\n", n, i);
 		else
 			printf("Last digit of %d is %d and is 0\n", n, i);
+	}
+
 	return (0);
 }
