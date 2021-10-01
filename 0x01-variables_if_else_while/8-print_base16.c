@@ -8,12 +8,12 @@ int main(void)
 {
 	int num;
 
-	for (num = 30; num <= 39; num++)
+	for (num = 48; num <= 57; num++)
 	{
 		putchar(num);
 	}
 
-	for (num = 61; num <= 66; num++)
+	for (num = 97; num <= 102; num++)
 	{
 		putchar(num);
 	}
