@@ -9,18 +9,15 @@
  */
 char *_strstr(char *haystack, char *needle)
 {
-	size_t need_len;
-
-	need_len = strlen(needle);
+	size_t n = strlen(needle);
 
 	while (*haystack)
 	{
-		if (*haystack == *needle)
+		if (!memcmp(haystack, needle, n))
 		{
-			if (!strncmp(haystack, needle, need_len))
-				return ((char *)haystack);
+			return (haystack);
 		}
 		haystack++;
 	}
-	return (NULL);
+	return (haystack);
 }
