@@ -9,7 +9,7 @@
  */
 int main(int argc, char *argv[])
 {
-	int num1, num2, total;
+	int total = 0;
 
 	if (argc < 3 || argc > 3)
 	{
@@ -17,9 +17,7 @@ int main(int argc, char *argv[])
 		return (1);
 	}
 
-	num1 = atoi(argv[1]);
-	num2 = atoi(argv[2]);
-	total = num1 * num2;
+	total = atoi(argv[1]) * atoi(argv[2]);
 	printf("%d", total);
 
 	return (0);
