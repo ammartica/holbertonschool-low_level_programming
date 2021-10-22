@@ -10,11 +10,11 @@
  */
 int main(int argc, char *argv[])
 {
-	int total = 1;
+	int total = 0;
 
-	if (argc < 3 || argc > 3)
+	if (argc < 2)
 	{
-		printf("Error");
+		printf("Error\n");
 		return (1);
 	}
 
