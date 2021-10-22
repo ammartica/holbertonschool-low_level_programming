@@ -17,13 +17,10 @@ int main(int argc, char *argv[])
 		return (1);
 	}
 
-	else
-	{
-		num1 = atoi(argv[1]);
-		num2 = atoi(argv[2]);
-		total = num1 * num2;
-		printf("%d", total);
-	}
+	num1 = atoi(argv[1]);
+	num2 = atoi(argv[2]);
+	total = num1 * num2;
+	printf("%d", total);
 
 	return (0);
 }
