@@ -33,12 +33,12 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 			;
 	}
 
-	if (j > n)
+	if (n >= s2)
 		j = n;
 
 	/* allocate memory */
 	k = i + j + 1;
-	a = malloc(k * sizeof(char) * k);
+	a = malloc(sizeof(char) * k);
 
 	/* concatenate strings */
 	if (a == NULL)
