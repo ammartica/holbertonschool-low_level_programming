@@ -25,10 +25,10 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	for (j = 0; s2[j]; j++)
 		;
 
-	if (j >= n)
+	if (j > n)
 		j = n;
 
-	k = i + j + 1;
+	k = i + j;
 	a = malloc(sizeof(char) * k);
 
 	if (a == NULL)
