@@ -3,7 +3,7 @@
 /**
  * add_nodeint - adds a new node at beginning of list
  * @head: beginning of list
- * @n: I honestly don't know what this is AAAAAAAAAAA
+ * @n: node to add
  *
  * Return: address of new element or NULL if fail
  */
