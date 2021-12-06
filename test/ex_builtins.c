@@ -6,9 +6,9 @@
  *
  * Return: 0 if successful or 1 if failure
  */
-void execute_builtins(char **tokens)
+int execute_builtins(char **tokens)
 {
-	int i = 0, length;
+	int i = 0, status;
 
 	bi builts[] = {
 		{"exit", ex},
@@ -17,16 +17,17 @@ void execute_builtins(char **tokens)
 	};
 
 	if (tokens[0] == NULL)
-		return;
+		return (1);
 
-	length = _strlen(tokens[0]);
+/*	length = _strlen(tokens[0]);*/
 
 	while (builts[i].n != NULL)
 	{
-		if (_strcmp(tokens[0], builts[i].n))
+		if (_strcmp(tokens[0], builts[i].n) == 0)
 		{
-			builts[i].f();
-			return;
+			status = builts[i].f();
+			return(status);
 		}
 	}
+	return (1);
 }

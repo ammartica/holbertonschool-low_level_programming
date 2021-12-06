@@ -3,11 +3,11 @@
 /**
  * _exit - exits from shell
  *
- * Return: VOID
+ * Return: -1 to exit shell
  */
-void ex(void)
+int ex(void)
 {
-	/*insert exit code here :P*/
+	return (-1);
 }
 
 /**
@@ -15,7 +15,7 @@ void ex(void)
  *
  * Return: VOID
  */
-void display_env(void)
+int display_env(void)
 {
 	unsigned int i = 0;
 
@@ -25,5 +25,7 @@ void display_env(void)
 		write(STDOUT_FILENO, "\n", 1);
 		i++;
 	}
+
+	return (0);
 }
 

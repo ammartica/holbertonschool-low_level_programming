@@ -13,14 +13,14 @@ extern char **environ;
 /* function prototypes */
 char **tokenize_input(char *line);
 char *read_line(void);
+void prompt(void);
 
 /* function prototypes for built-ins */
-void ex(void);
-void display_env(void);
-void execute_builtins(char **tokens);
+int ex(void);
+int display_env(void);
+int execute_builtins(char **tokens);
 
 /* function prototypes for functions */
-void execute_builtins(char **tokens);
 int _strlen(char *s);
 int _strcmp(char *s1, char *s2);
 
@@ -28,7 +28,7 @@ int _strcmp(char *s1, char *s2);
 typedef struct built_ins
 {
   char *n;
-  void (*f)(void);
+  int (*f)(void);
 } bi;
 
 #endif /*_MAIN_H_*/

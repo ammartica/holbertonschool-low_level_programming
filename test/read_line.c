@@ -7,27 +7,38 @@
  */
 char *read_line(void)
 {
-	int i = 0, line;
+	int i = 0;
+	int len;
 	size_t buffsize = 0;
-	char *buffer = (char *)malloc(buffsize * sizeof(char));
+	char *line = NULL;
+	
+	len = getline(&line, &buffsize, stdin);
 
-	if (buffer == NULL)
+	if (line == NULL)
 		exit(EXIT_FAILURE);
 
-	line = getline(&buffer, &buffsize, stdin);
+	if (len == 1)
+	{
+		free(line);
+		return (NULL);
+	}
 
 
 /*	printf("what is inside line?: %d\n", line);*/
 
 	/* if ctrl + d then exit */
-	if (line == EOF)
+	if (len == EOF)
+	{
+		if(isatty(STDIN_FILENO))
+			write(STDOUT_FILENO, "\n", 1);
+		free(line);
 		exit(EXIT_SUCCESS);
+	}
 
 	/*transforms enter into null byte*/
-	while (buffer[i] != '\n')
+	while (line[i] != '\n')
 		i++;
-	buffer[i] = '\0';
+	line[i] = '\0';
 
-	return (buffer);
+	return (line);
 }
-

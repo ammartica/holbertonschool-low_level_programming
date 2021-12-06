@@ -15,16 +15,13 @@ int main(void)
 	while (1)
 	{
 		/*prompt*/
-		printf("#cisfun$ ");
+		prompt();
 
 		/*receives user input and stores it in user_input*/
 		user_input = read_line();
 
 		/* tokenizes user_input */
 		tokens = tokenize_input(user_input);
-
-		/* execute built-in commands */
-		execute_builtins(tokens);
 
 	/*makes a child in order to execute command (must make into a function)*/
 		child = fork();
