@@ -3,14 +3,13 @@
 /**
  * main - simple shell
  *
- * Return: 0 if SUCCESS
+ * Return: 1
  */
 int main(void)
 {
 	char *user_input;
-	pid_t child;
-	int status;
 	char **tokens;
+
 
 	while (1)
 	{
@@ -23,7 +22,13 @@ int main(void)
 		/* tokenizes user_input */
 		tokens = tokenize_input(user_input);
 
-	/*makes a child in order to execute command (must make into a function)*/
+		if ((_strcmp(tokens[0], "\n") != 0) && _strcmp(tokens[0], "env"))
+		/*	path = get_path();
+			status = stat(tokens, path);*/
+			execute_child(tokens);
+
+
+	/*makes a child in order to execute command (must make into a function)
 		child = fork();
 		if (child == -1)
 		{
@@ -36,7 +41,8 @@ int main(void)
 				perror("./shell");
 		}
 		else
-			wait(&status);
+			wait(&status);*/
 	}
-	return (0);
+
+	return (1);
 }

@@ -14,21 +14,14 @@ extern char **environ;
 char **tokenize_input(char *line);
 char *read_line(void);
 void prompt(void);
+int execute_child(char **tokens);
+
 
 /* function prototypes for built-ins */
-int ex(void);
 int display_env(void);
-int execute_builtins(char **tokens);
 
-/* function prototypes for functions */
+/* function prototypes for string functions */
 int _strlen(char *s);
 int _strcmp(char *s1, char *s2);
-
-/* structure for function pointers to implement built-ins */
-typedef struct built_ins
-{
-  char *n;
-  int (*f)(void);
-} bi;
 
 #endif /*_MAIN_H_*/

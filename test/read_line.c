@@ -7,8 +7,7 @@
  */
 char *read_line(void)
 {
-	int i = 0;
-	int len;
+	int i = 0, len;
 	size_t buffsize = 0;
 	char *line = NULL;
 	
@@ -16,15 +15,6 @@ char *read_line(void)
 
 	if (line == NULL)
 		exit(EXIT_FAILURE);
-
-	if (len == 1)
-	{
-		free(line);
-		return (NULL);
-	}
-
-
-/*	printf("what is inside line?: %d\n", line);*/
 
 	/* if ctrl + d then exit */
 	if (len == EOF)

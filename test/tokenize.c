@@ -27,9 +27,18 @@ char **tokenize_input(char *line)
 		token[i + 1] = strtok(NULL, " ");
 		i++;
 	}
-
 	token[i] = NULL;
 
+	/* exit built-in command */
+	if ((_strcmp(token[0], "exit") == 0) && token[1] == NULL)
+	{
+		free(line);
+		free(token);
+		exit(0);
+	}
+
+
+	/* env built-in command */
 	if ((_strcmp(token[0], "env") == 0) && token[1] == NULL)
 		display_env();
 
