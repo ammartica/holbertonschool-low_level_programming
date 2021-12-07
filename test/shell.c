@@ -8,7 +8,8 @@
 int main(void)
 {
 	char *user_input;
-	char **tokens;
+	char **tokens, **path;
+	int status = 0;
 
 
 	while (1)
@@ -23,26 +24,15 @@ int main(void)
 		tokens = tokenize_input(user_input);
 
 		if ((_strcmp(tokens[0], "\n") != 0) && _strcmp(tokens[0], "env"))
-		/*	path = get_path();
-			status = stat(tokens, path);*/
-			execute_child(tokens);
-
-
-	/*makes a child in order to execute command (must make into a function)
-		child = fork();
-		if (child == -1)
 		{
-			perror("./shell");
-			return (1);
-		}
-		if (child == 0)
-		{
-			if (execve(tokens[0], tokens, NULL) == -1)
-				perror("./shell");
+			path = find_path();
+			status = stat(tokens, path);
+			execute_child(tokens, status);
 		}
 		else
-			wait(&status);*/
-	}
+			free(tokens);
 
-	return (1);
+		free(user_input);
+	}
+	return (0);
 }

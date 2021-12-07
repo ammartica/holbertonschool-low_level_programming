@@ -60,6 +60,38 @@ int _strcmp(char *s1, char *s2)
 	}
 }
 
+/**
+ * _strdup - duplicates string
+ * @src: string to duplicate
+ *
+ * Return: duplicated string
+ */
+char *_strdup(char *src)
+{
+	char *str;
+	char *p;
+	int len = 0;
+
+	while (src[len])
+		len++;
+
+	str = malloc(len + 1);
+	p = str;
+
+	while (*src)
+		*p++ = *src++;
+	*p = '\0';
+
+	return (str);
+}
+
+
+/**
+ * _getenv - gets value of env var
+ * @name: name of variable in env
+ *
+ * Return: NULL or value of env var
+ */
 char *_getenv(const char *name)
 {
 	char **envPtr; /* pointer to environ */

@@ -6,7 +6,7 @@
  *
  * Return: VOID
  */
-int execute_child(char **tokens)
+int execute_child(char **tokens, int stat)
 {
 	pid_t child;
 	int status;
@@ -17,13 +17,23 @@ int execute_child(char **tokens)
 		perror("./shell");
 		exit(EXIT_FAILURE);
 	}
-	if (child == 0)
+	else if (child == 0)
 	{
 		if (execve(tokens[0], tokens, NULL) == -1)
+		{
 			perror("./shell");
+			free(tokens);
+			exit(EXIT_FAILURE);
+		}
+		exit(EXIT_SUCCESS);
 	}
 	else
-		wait(&status);
-
-	return (0); /*IDK if this is right*/
+	{
+		if (stat == 1)
+			free(tokens[0]);
+		
+		free(tokens[0]);
+		waitpid(child, &status, WUNTRACED);
+	}
+	return (1); /*IDK if this is right*/
 }

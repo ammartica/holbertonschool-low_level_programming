@@ -6,7 +6,9 @@
 #include <unistd.h>
 #include <string.h>
 #include <sys/types.h>
+#include <sys/stat.h>
 #include <sys/wait.h>
+#include <limits.h>
 
 extern char **environ;
 
@@ -14,7 +16,10 @@ extern char **environ;
 char **tokenize_input(char *line);
 char *read_line(void);
 void prompt(void);
-int execute_child(char **tokens);
+int execute_child(char **tokens, int stat);
+char **_which(char *path);
+char **find_path();
+
 
 /* function prototypes for built-ins */
 int display_env(void);
@@ -24,5 +29,6 @@ int _strlen(char *s);
 char *_strncpy(char *dest, char *src, int n);
 int _strcmp(char *s1, char *s2);
 char *_getenv(const char *name);
+char *_strdup(char *src);
 
 #endif /*_MAIN_H_*/
