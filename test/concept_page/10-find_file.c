@@ -13,8 +13,9 @@ int main(int ac, char **av, char **env)
 	int i = 0, status, j;
 	struct stat st;
 	pid_t child;
+	char *string = NULL;
 	char *path = getenv("PATH");
-	char **token = malloc(50 * sizeof(char *));
+	char **token = malloc(1024 * sizeof(char *));
 	char *argv[1024];
 	char *concat[1024];
 
@@ -41,12 +42,15 @@ int main(int ac, char **av, char **env)
 			printf("are we making the right array? %s\n", token[i]); /*debugging*/
 			i++;
 		}
+
+		token[i] = NULL;
 		
 		/*iterate through argv*/
-		for (j = 0; j <= i; j++)
+		for (j = 0; j < i; j++)
 		{
-			token[j] = strcat(token[j], buffer);
-			printf("are we iterating through our array? %s\n", token[j]);
+			printf("before %s\n", token[j]);
+			string = strcat(token[j], "hi");
+			printf("after %s\n", token[j]);
 			/*
 			argv[j] = strcat(argv[j], buffer);
 			

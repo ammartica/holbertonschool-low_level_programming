@@ -1,55 +1,52 @@
 #include "main.h"
 
 /**
- * find_path - finds path
+ * find_path - divide path in directories
+ * @path_value: string to tokenize
+ * @command: command to concatenate
  *
- * Return: the path
+ * Return: command
  */
-char **find_path()
+char **find_path(char *path_value)
 {
 	int i = 0;
-	char **path;
+	char **dirs = malloc(1024 * sizeof(char *));
 
-	while (environ[i])
+	dirs[i] = strtok(path_value, ":");
+
+	while (dirs[i])
 	{
-		if (environ[i][0] == 'P' && environ[i][2] == 'T')
-			path = _which(environ[i]);
+		dirs[i + 1] = strtok(NULL, ":");
 		i++;
 	}
-	return (path);
+	dirs[i] = NULL;
+
+	return (dirs);
 }
 
 /**
- * _which - finds value of path var
- * @path: path to search value of
+ * concat_command - concatenates command to path directories
+ * @directories: 2d array full of directories in PATH
+ * @command: command to concatenate
  *
- * Return: value of path var
+ * Return: full path to command to be executed
  */
-char **_which(char *path)
+char *concat_command(char **dirs, char *command)
 {
-	int i = 0;
-	char *copy_path = NULL, *tokens = NULL, *deli = ":=";
-	char **dir = malloc(sizeof(char *));
+	int total = 0, i;
+	char *new_command;
 
-	if (path == NULL)
-	{
-		free(path);
-		return (0);
-	}
-	if (dir == NULL)
-	{
-		free(path);
-		perror("Error allocated memory");
-		return (NULL);
-	}
 
-	copy_path = _strdup(path);
-	tokens = strtok(copy_path, deli);
-	while (tokens != NULL)
+	/* loop to get total count of directories */
+	while (dirs[total])
+		total++;
+
+	for (i = 0; i < total; i++)
 	{
-		dir[i] = tokens;
-		i++;
-		tokens = strtok(NULL, deli);
+		dirs[i] = strcat(dirs[i], command);
+		printf("are we concatenating? %s\n", dirs[i]);
 	}
-	return (dir);
+	return (dirs);
 }
+
+

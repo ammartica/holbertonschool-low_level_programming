@@ -12,12 +12,15 @@ char **tokenize_input(char *line)
 	char **token = malloc(1024 * sizeof(char *));
 
 	if (line == NULL)
-		return (0);
+	{
+		free(line);
+		exit(EXIT_FAILURE);
+	}
 
 	if (token == NULL)
 	{
-		perror("ERROR\n");
 		free(token);
+		perror("ERROR\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -34,13 +37,30 @@ char **tokenize_input(char *line)
 	{
 		free(line);
 		free(token);
-		exit(0);
+		exit(EXIT_SUCCESS);
 	}
-
 
 	/* env built-in command */
 	if ((_strcmp(token[0], "env") == 0) && token[1] == NULL)
 		display_env();
 
+	
 	return (token);
+}
+
+
+/**
+ * display_env - displays environment variables
+ *
+ * Return: VOID
+ */
+void display_env(void)
+{
+	unsigned int i = 0;
+	while (environ[i])
+	{
+		write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
+		write(STDOUT_FILENO, "\n", 1);
+		i++;
+	}
 }

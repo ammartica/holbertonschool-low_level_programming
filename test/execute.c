@@ -4,9 +4,9 @@
  * execute_command - executes a command
  * @tokens - list of commands to be executed
  *
- * Return: VOID
+ * Return: 
  */
-int execute_child(char **tokens, int stat)
+int execute_child(char **tokens, char *command)
 {
 	pid_t child;
 	int status;
@@ -14,6 +14,8 @@ int execute_child(char **tokens, int stat)
 	child = fork();
 	if (child == -1)
 	{
+		free(tokens);
+		printf("debugging 1\n");
 		perror("./shell");
 		exit(EXIT_FAILURE);
 	}
@@ -21,8 +23,9 @@ int execute_child(char **tokens, int stat)
 	{
 		if (execve(tokens[0], tokens, NULL) == -1)
 		{
-			perror("./shell");
 			free(tokens);
+			printf("debugging 2\n");
+			perror("./shell");
 			exit(EXIT_FAILURE);
 		}
 		exit(EXIT_SUCCESS);
@@ -33,7 +36,7 @@ int execute_child(char **tokens, int stat)
 			free(tokens[0]);
 		
 		free(tokens[0]);
-		waitpid(child, &status, WUNTRACED);
+		wait(&status);
 	}
-	return (1); /*IDK if this is right*/
+	return (0);
 }
